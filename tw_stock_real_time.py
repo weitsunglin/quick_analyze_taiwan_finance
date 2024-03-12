@@ -17,7 +17,7 @@ def scrape_stock_price(stock_code):
         if stock_price:
             with open(f'tw_stock_real_time_{stock_code}.txt', 'w', encoding='utf-8') as txtfile:
                 txtfile.write(f'{stock_code} {stock_price.text}')
-            # return f'{stock_code} {stock_price.text}'
+            return f'File created for {stock_code}'
         else:
             return f'Stock Price for {stock_code}: Not found'
 
