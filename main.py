@@ -17,7 +17,7 @@ def convert_date(data_ROC):
 def save_to_txt(data, filename):
     if data and data["stat"] == "OK":
         with open(filename, 'w', encoding='utf-8') as txtfile:
-            txtfile.write(f"股票代号: {data['title'].split()[1]}\n")
+            txtfile.write(f"股票代號: {data['title'].split()[1]}\n")
             txtfile.write(f"資料日期: {data['date']}\n")
             txtfile.write(f"{data['title']}\n")
             txtfile.write('  / '.join(data["fields"]) + "\n")
@@ -37,6 +37,6 @@ def main(stocks, date):
         save_to_txt(data, filename)
 
 if __name__ == "__main__":
-    stocks = ["00929", "00919","1216"]
+    stocks = ["00929", "00919","2376","2357"]
     date = "202401"
     main(stocks, date)
