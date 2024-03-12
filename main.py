@@ -25,6 +25,9 @@ def save_to_txt(data, filename):
             for row in data["data"]:
                 row[0] = convert_date(row[0])
                 txtfile.write('  / '.join(row) + "\n")
+            txtfile.write("\n")
+            txtfile.write("\n")
+            txtfile.write("\n")
         print(f"Data saved to {filename}")
     else:
         print("No data to save.")
@@ -33,7 +36,7 @@ def main(stocks, date):
     for stock in stocks:
         print(f"\nFetching data for stock {stock}...")
         data = fetch_stock_data(stock, date)
-        filename = f"stock_{stock}_{date}.txt"
+        filename = f"README.md"
         save_to_txt(data, filename)
 
 if __name__ == "__main__":
