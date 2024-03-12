@@ -37,6 +37,6 @@ def main(stocks, date):
         save_to_txt(data, filename)
 
 if __name__ == "__main__":
-    stocks = ["00929", "00919","2376","2357"]
-    date = "202201"
+    stocks = ["00929", "00919"]
+    date = "202401"
     main(stocks, date)
