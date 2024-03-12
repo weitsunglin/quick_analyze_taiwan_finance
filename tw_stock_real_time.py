@@ -15,6 +15,8 @@ def scrape_stock_price(stock_code):
             stock_price = soup.find('h3', class_='jsx-2312976322 fall')
         
         if stock_price:
+            with open(f'tw_stock_real_time{stock_code}　', 'w', encoding='utf-8') as txtfile:
+                txtfile.write( f'{stock_code}　'+stock_price.text)
             return f'{stock_code}　'+stock_price.text
         else:
             return f'Stock Price for {stock_code}: Not found'
