@@ -15,7 +15,7 @@ def scrape_stock_price(stock_code):
             stock_price = soup.find('h3', class_='jsx-2312976322 fall')
         
         if stock_price:
-            with open(f'tw_stock_real_time_{stock_code}.txt', 'w', encoding='utf-8') as txtfile:
+            with open(f'C:/Users/User/Desktop/project/quick_analyze_stock/tw_stock_real_time_{stock_code}.txt', 'w', encoding='utf-8') as txtfile:
                 txtfile.write(f'{stock_code} {stock_price.text}')
             return f'File created for {stock_code}'
         else:
