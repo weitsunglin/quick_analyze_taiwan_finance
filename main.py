@@ -33,7 +33,7 @@ def main(stocks, date):
     for stock in stocks:
         print(f"\nFetching data for stock {stock}...")
         data = fetch_stock_data(stock, date)
-        filename = f"stock_{stock}_{date}.txt"
+        filename = f"C:/Users/User/Desktop/project/quick_analyze_stock/stock_{stock}_{date}.txt"
         save_to_txt(data, filename)
 
 if __name__ == "__main__":
