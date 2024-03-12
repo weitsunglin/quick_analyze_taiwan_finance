@@ -25,7 +25,7 @@ def scrape_stock_price(stock_code):
         return f'Failed to retrieve webpage for {stock_code}'
 
 # List of stock codes to scrape
-stock_codes = ['00937b', '00919', '3293']
+stock_codes = ['00937b', '00919', '3293','2376','2357']
 
 # Scrape each stock code
 for code in stock_codes:
