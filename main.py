@@ -38,5 +38,5 @@ def main(stocks, date):
 
 if __name__ == "__main__":
     stocks = ["00929", "00919","2376","2357"]
-    date = "202401"
+    date = "202201"
     main(stocks, date)
