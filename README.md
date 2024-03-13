@@ -12,3 +12,6 @@
 ## GIGABYTE
 
 ![2376_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2376_closing_prices.png)
+
+
+![cute](https://github.com/weitsunglin/quick_analyze_stock/blob/main/cute.jpg)
