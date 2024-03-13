@@ -3,11 +3,12 @@
 ![stock_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/stock_prices.png)
 
 
-## ETF series
+## ETF series history
 
 ![00919_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00919_closing_prices.png)
 
 ![00929_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00929_closing_prices.png)
 
-## GOODBOY series
+## GOODBOY series history
 
+![2376_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2376_closing_prices.png)
