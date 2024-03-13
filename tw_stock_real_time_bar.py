@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 from matplotlib.font_manager import FontProperties
 
-
+# 定义爬虫函数
 def scrape_stock_price(stock_code):
     url = f'https://www.cnyes.com/twstock/{stock_code}'
     response = requests.get(url)
@@ -25,33 +25,34 @@ def scrape_stock_price(stock_code):
     else:
         return stock_code, None
 
-
 stock_codes = ['3293', '2376', '2357']
 stock_prices = {code: scrape_stock_price(code)[1] for code in stock_codes if scrape_stock_price(code)[1] is not None}
 
-
 font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
-
 
 plt.figure(figsize=(10, 6))
 prices = [price for price in stock_prices.values()]
 
-
 min_price = min(prices) * 0.9
 max_price = max(prices) * 1.1
 
-plt.bar(stock_codes, prices, color='blue')
+bars = plt.bar(stock_codes, prices, color='blue')
 plt.xlabel('股票代號', fontproperties=font)
 plt.ylabel('價格 (nt)', fontproperties=font)
 plt.title('台灣小海豹嚴選監控中', fontproperties=font)
 plt.xticks(rotation=45)
 plt.ylim(min_price, max_price)  # 設定y軸範圍
 
+# 在每个长条图上添加价格的数字
+for bar in bars:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval + (max_price-min_price)*0.01, f'{yval:.2f}', ha='center', va='bottom', fontproperties=font)
 
+# 保存路径检查
 directory = "C:/Users/User/Desktop/project/quick_analyze_stock/"
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-
+# 保存图表
 save_path = os.path.join(directory, "stock_prices.png")
 plt.savefig(save_path)

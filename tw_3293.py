@@ -4,7 +4,8 @@ import pandas as pd
 
 
 def fetch_stock_data(stock, date):
-    address = f"https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date={date}&stockNo={stock}"
+    # 假设这是TPEx API的正确调用方式（需要根据实际API文档调整）
+    address = f"https://api.tpex.org.tw/v1/tpex_mainboard_quotes?response=json&date={date}&stockNo={stock}"
     response = requests.get(address)
     if response.status_code == 200:
         return response.json()
