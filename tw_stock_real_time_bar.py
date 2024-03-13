@@ -14,7 +14,7 @@ def scrape_stock_price(stock_code):
             stock_price = soup.find('h3', class_='jsx-2312976322 fall')
 
         if not stock_price:
-            stock_price = soup.find('h3', class_='jsx-2312976322 ')
+            stock_price = soup.find('h3', class_='jsx-2312976322')
 
         if stock_price:
             price_text = stock_price.text.split()[0].replace(',', '')
