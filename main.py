@@ -20,14 +20,17 @@ def save_to_txt(data, filename):
             txtfile.write(f"股票代號: {data['title'].split()[1]}\n")
             txtfile.write(f"資料日期: {data['date']}\n")
             txtfile.write(f"{data['title']}\n")
-            txtfile.write('  / '.join(data["fields"]) + "\n")
+            # 增加標題的單位說明
+            fields_with_units = ['日期', '成交股數(股)', '成交金額(元)', '開盤價(元)', '最高價(元)', '最低價(元)', '收盤價(元)', '漲跌價差(元)', '成交筆數(筆)']
+            txtfile.write('  / '.join(fields_with_units) + "\n")
             txtfile.write("\n")
             for row in data["data"]:
-                row[0] = convert_date(row[0])
+                row[0] = convert_date(row[0]) # 轉換日期格式
                 txtfile.write('  / '.join(row) + "\n")
         print(f"Data saved to {filename}")
     else:
         print("No data to save.")
+
 
 def main(stocks, date):
     for stock in stocks:
@@ -37,6 +40,6 @@ def main(stocks, date):
         save_to_txt(data, filename)
 
 if __name__ == "__main__":
-    stocks = ["00929", "00919","2308"]
+    stocks = ["2308"]
     date = "202401"
     main(stocks, date)
