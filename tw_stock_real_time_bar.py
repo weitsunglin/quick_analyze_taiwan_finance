@@ -25,7 +25,7 @@ def scrape_stock_price(stock_code):
     else:
         return stock_code, None
 
-stock_codes = ['3293', '2376', '2357','00929','00919'] # 可自行增加好孩子
+stock_codes = ['3293', '2376', '2357','1216'] # 可自行增加好孩子
 stock_prices = {code: scrape_stock_price(code)[1] for code in stock_codes if scrape_stock_price(code)[1] is not None}
 
 font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
