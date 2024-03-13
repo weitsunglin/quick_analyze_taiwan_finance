@@ -60,6 +60,6 @@ def main(stocks, date):
         plot_stock_data(data, stock)
 
 if __name__ == "__main__":
-    stocks = [ "00919"]
+    stocks = [ "00929"]
     date = "202401"
     main(stocks, date)
