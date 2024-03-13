@@ -2,6 +2,7 @@ import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
 def fetch_stock_data(stock, date):
     address = f"https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date={date}&stockNo={stock}"
     response = requests.get(address)
@@ -46,7 +47,7 @@ def plot_stock_data(data, stock):
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.legend()        
-        plt.savefig(f"{stock}_closing_prices.png")
+        plt.savefig(f"C:/Users/User/Desktop/project/quick_analyze_stock/{stock}_closing_prices.png")
 
     else:
         print(f"No data to plot for stock {stock}.")
