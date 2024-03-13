@@ -9,6 +9,6 @@
 
 ![00929_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00929_closing_prices.png)
 
-## GOODBOY series history
+## GIGABYTE
 
 ![2376_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2376_closing_prices.png)

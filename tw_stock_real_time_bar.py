@@ -25,7 +25,7 @@ def scrape_stock_price(stock_code):
     else:
         return stock_code, None
 
-stock_codes = ['3293', '2376', '2357']
+stock_codes = ['3293', '2376', '2357','00929','00919'] # 可自行增加好孩子
 stock_prices = {code: scrape_stock_price(code)[1] for code in stock_codes if scrape_stock_price(code)[1] is not None}
 
 font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
@@ -43,16 +43,16 @@ plt.title('台灣小海豹嚴選監控中', fontproperties=font)
 plt.xticks(rotation=45)
 plt.ylim(min_price, max_price)  # 設定y軸範圍
 
-# 在每个长条图上添加价格的数字
+
 for bar in bars:
     yval = bar.get_height()
     plt.text(bar.get_x() + bar.get_width()/2, yval + (max_price-min_price)*0.01, f'{yval:.2f}', ha='center', va='bottom', fontproperties=font)
 
-# 保存路径检查
+
 directory = "C:/Users/User/Desktop/project/quick_analyze_stock/"
 if not os.path.exists(directory):
     os.makedirs(directory)
 
-# 保存图表
+
 save_path = os.path.join(directory, "stock_prices.png")
 plt.savefig(save_path)
