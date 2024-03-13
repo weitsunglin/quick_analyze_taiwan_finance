@@ -16,7 +16,7 @@ def scrape_stock_price(stock_code):
         
         if stock_price:
             with open(f'C:/Users/User/Desktop/project/quick_analyze_stock/tw_stock_real_time_{stock_code}.txt', 'w', encoding='utf-8') as txtfile:
-                txtfile.write(f'{stock_code} {stock_price.text}')
+                txtfile.write(f'{stock_code} price: {stock_price.text} nt')
             return f'File created for {stock_code}'
         else:
             return f'Stock Price for {stock_code}: Not found'
@@ -25,7 +25,7 @@ def scrape_stock_price(stock_code):
         return f'Failed to retrieve webpage for {stock_code}'
 
 # List of stock codes to scrape
-stock_codes = ['00937b', '00919', '3293','2376','2357']
+stock_codes = ['3293','2376','2357']
 
 # Scrape each stock code
 for code in stock_codes:
