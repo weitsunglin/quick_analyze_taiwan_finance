@@ -1,4 +1,4 @@
-## Taiwanese little seal carefully selected 15mini refresh
+## Taiwanese little seal carefully selected 5mini refresh
 
 ![stock_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/stock_prices.png)
 

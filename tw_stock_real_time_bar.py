@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 from matplotlib.font_manager import FontProperties
 
-# 定义爬虫函数
+
 def scrape_stock_price(stock_code):
     url = f'https://www.cnyes.com/twstock/{stock_code}'
     response = requests.get(url)
@@ -25,7 +25,7 @@ def scrape_stock_price(stock_code):
     else:
         return stock_code, None
 
-stock_codes = ['3293', '2376','1216','00919','00929'] # 可自行增加好孩子
+stock_codes = ['3293', '2376','2454','2330'] # 可自行增加好孩子
 stock_prices = {code: scrape_stock_price(code)[1] for code in stock_codes if scrape_stock_price(code)[1] is not None}
 
 font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)
