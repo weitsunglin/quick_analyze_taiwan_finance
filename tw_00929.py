@@ -4,6 +4,7 @@ import pandas as pd
 
 
 def fetch_stock_data(stock, date):
+    # 上市api url，興櫃沒有哦
     address = f"https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&date={date}&stockNo={stock}"
     response = requests.get(address)
     if response.status_code == 200:
