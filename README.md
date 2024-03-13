@@ -1,6 +1,5 @@
-## Taiwanese little seal carefully selected
+## Taiwanese little seal carefully selected 15mini refresh
 
-## TW REAL TIME GOOD BOYS
 ![stock_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/stock_prices.png)
 
 
