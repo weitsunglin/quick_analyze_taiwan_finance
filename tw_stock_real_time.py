@@ -24,7 +24,7 @@ def scrape_stock_price(stock_code):
     else:
         return f'Failed to retrieve webpage for {stock_code}'
 
-# List of stock codes to scrape
+# 盡量放高架好學生，因為投報率才高，套牢也會回檔
 stock_codes = ['3293','2376','2357']
 
 # Scrape each stock code
