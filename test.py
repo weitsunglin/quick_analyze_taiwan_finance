@@ -1,11 +1,7 @@
-import yfinance as yf
 
-date = '2021-01-01'
-stock_no = '3293.TW'
+from yahoo_fin.stock_info import *
 
-stock = yf.Ticker(stock_no)
-stock_data = stock.history(start=date)
+stock_no = '0050.TW'
 
-print(stock_data)
-
-stock_data.head()
+data = get_data(stock_no , start_date = '2021/01/01')
+data.head()
