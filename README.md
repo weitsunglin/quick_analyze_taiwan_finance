@@ -1,19 +1,28 @@
 ## 台灣小海豹嚴選8 個股走勢
 
+### ETF
 
 ![00919_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00919_two_month_closing_prices.png)
 
 ![00929_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00929_two_month_closing_prices.png)
 
+### 食品
+
 ![1216_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/1216_two_month_closing_prices.png)
 
+### 晶片
+
 ![2330_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2330_two_month_closing_prices.png)
+
+![2454_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2454_two_month_closing_prices.png)
+
+### 電腦周邊
 
 ![2376_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2376_two_month_closing_prices.png)
 
 ![2382_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2382_two_month_closing_prices.png)
 
-![2454_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2454_two_month_closing_prices.png)
+### 金融
 
 ![2890_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2890_two_month_closing_prices.png)
 
