@@ -28,7 +28,7 @@ def scrape_stock_price(stock_code):
     else:
         return stock_code, None
 
-original_stock_codes = ['3293', '2376', '2454', '2330', '2308']
+original_stock_codes = [ '2376', '2454', '2330', '2308']
 scraped_data = [scrape_stock_price(code) for code in original_stock_codes]
 
 # Filter out None prices and separate codes and prices
