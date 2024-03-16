@@ -19,10 +19,12 @@ def fetch_stock_data(date, stock_no):
                         continue
                     gregorian_year = year + 1911
                     date = datetime(gregorian_year, month, day)
-                    closing_price = float(parts[6])
+                    # Remove commas before converting to float
+                    closing_price = float(parts[6].replace(',', ''))
                     dates.append(date)
                     prices.append(closing_price)
     return dates, prices
+
 
 def get_previous_month(date):
     first_day_of_current_month = date.replace(day=1)
@@ -40,7 +42,7 @@ def plot_stock_data(dates, prices, stock_no):
     plt.savefig(f"C:/Users/User/Desktop/project/quick_analyze_stock/{stock_no}_two_month_closing_prices.png")
 
 if __name__ == "__main__":
-    stock_number = "2603"
+    stock_number = "2454"
     current_date = datetime.now()
     current_month_str = current_date.strftime("%Y%m01")
     previous_month_str = get_previous_month(current_date)
