@@ -4,46 +4,62 @@ import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from io import StringIO
 
-# 初始化一个空的DataFrame来存储每天的数据
-df_monthly = pd.DataFrame()
-
-# 股票代码和开始日期
-stock_no = '2330'
-start_date = datetime(2021, 5, 1)
-end_date = datetime(2021, 5, 31)
-
-# 循环获取一个月内每天的数据
-current_date = start_date
-while current_date <= end_date:
-    date_str = current_date.strftime('%Y%m%d')
-    url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date_str}&stockNo={stock_no}"
-    
+def fetch_stock_data(date, stock_no):
+    """
+    Fetch stock trading data for a given date and stock number.
+    """
+    url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date}&stockNo={stock_no}"
     response = requests.get(url)
     if response.status_code == 200:
-        # 读取CSV数据到DataFrame
-        data = pd.read_csv(StringIO(response.text), header=1, skipfooter=5, engine='python')
-        if not data.empty:
-            df_monthly = pd.concat([df_monthly, data], ignore_index=True)
-    
-    current_date += timedelta(days=1)
+        # Use StringIO to handle the CSV text, skip rows that don't start with a number (date)
+        content = "\n".join([line for line in response.text.split('\n') if line.strip().startswith('"') or line.strip().isdigit()])
+        if content:
+            df = pd.read_csv(StringIO(content), header=1)
+            return df
+    return None
 
-# 预处理和清洗数据
-df_monthly = df_monthly.dropna()
-df_monthly['日期'] = pd.to_datetime(df_monthly['日期'].str.replace('年', '-', regex=False).str.replace('月', '-', regex=False).str.replace('日', '', regex=False), format='%Y-%m-%d')
-df_monthly['收盤價'] = pd.to_numeric(df_monthly['收盤價'].str.replace(',', '', regex=False), errors='coerce')
+def main(stock_no, start_date, end_date):
+    """
+    Main function to fetch data, process it, and plot the closing prices.
+    """
+    current_date = start_date
+    all_data = []
 
-# 绘制收盘价走势图
-plt.figure(figsize=(10, 6))
-plt.plot(df_monthly['日期'], df_monthly['收盤價'], marker='o', linestyle='-')
-plt.title(f'Stock No. {stock_no} Closing Price in May 2021')
-plt.xlabel('Date')
-plt.ylabel('Closing Price')
-plt.grid(True)
-plt.xticks(rotation=45)
+    while current_date <= end_date:
+        date_str = current_date.strftime('%Y%m%d')
+        print(f"Fetching data for {date_str}")
+        data = fetch_stock_data(date_str, stock_no)
+        if data is not None:
+            all_data.append(data)
+        current_date += timedelta(days=1)
 
-# 保存走势图到本地
-save_path = f'C:\\Users\\User\\Desktop\\project\\quick_analyze_stock\\{stock_no}_closing_price_may_2021.png'
-plt.savefig(save_path)
-plt.close()
+    if all_data:
+        df_all = pd.concat(all_data, ignore_index=True)
 
-print(f"Chart has been saved to {save_path}")
+        # Preprocess and clean data
+        df_all['日期'] = pd.to_datetime(df_all['日期'].str.replace('"', ''), format='%Y/%m/%d')
+        df_all['收盤價'] = pd.to_numeric(df_all['收盤價'].str.replace(',', '').str.replace('"', ''), errors='coerce')
+
+        # Plot closing prices
+        plt.figure(figsize=(14, 7))
+        plt.plot(df_all['日期'], df_all['收盤價'], marker='o', linestyle='-', color='b')
+        plt.title(f'Stock No. {stock_no} Closing Price')
+        plt.xlabel('Date')
+        plt.ylabel('Closing Price (TWD)')
+        plt.grid(True)
+        plt.xticks(rotation=45)
+
+        # Save plot to local file
+        save_path = f"./{stock_no}_closing_prices.png"
+        plt.savefig(save_path)
+        print(f"Plot saved to {save_path}")
+        plt.close()
+    else:
+        print("No data fetched.")
+
+if __name__ == "__main__":
+    # Example: Fetch data for stock number 2330 from March 1, 2021, to March 31, 2021.
+    stock_number = "2330"
+    start = datetime(2021, 5, 1)
+    end = datetime(2021, 5, 31)
+    main(stock_number, start, end)
