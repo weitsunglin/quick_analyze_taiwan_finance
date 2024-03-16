@@ -15,4 +15,5 @@
 ![exchange_rates_chart](https://github.com/weitsunglin/quick_analyze_stock/blob/main/exchange_rates_chart.png)
 
 
+
 ![cute](https://github.com/weitsunglin/quick_analyze_stock/blob/main/cute.jpg)
