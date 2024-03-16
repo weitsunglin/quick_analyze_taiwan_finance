@@ -1,6 +1,6 @@
 import requests
 import matplotlib.pyplot as plt
-from datetime import datetime
+from datetime import datetime, timedelta
 
 def fetch_stock_data(date, stock_no):
     url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date}&stockNo={stock_no}"
@@ -24,6 +24,11 @@ def fetch_stock_data(date, stock_no):
                     prices.append(closing_price)
     return dates, prices
 
+def get_previous_month(date):
+    first_day_of_current_month = date.replace(day=1)
+    last_day_of_previous_month = first_day_of_current_month - timedelta(days=1)
+    return last_day_of_previous_month.strftime("%Y%m%d")
+
 def plot_stock_data(dates, prices, stock_no):
     plt.figure(figsize=(10, 6))
     plt.plot(dates, prices, marker='o', linestyle='-', color='b')
@@ -36,6 +41,14 @@ def plot_stock_data(dates, prices, stock_no):
 
 if __name__ == "__main__":
     stock_number = "2330"
-    date = "20240201"
-    dates, prices = fetch_stock_data(date, stock_number)
-    plot_stock_data(dates, prices, stock_number)
+    current_date = datetime.now()
+    current_month_str = current_date.strftime("%Y%m01")
+    previous_month_str = get_previous_month(current_date)
+
+    prev_dates, prev_prices = fetch_stock_data(previous_month_str, stock_number)
+    curr_dates, curr_prices = fetch_stock_data(current_month_str, stock_number)
+
+    all_dates = prev_dates + curr_dates
+    all_prices = prev_prices + curr_prices
+
+    plot_stock_data(all_dates, all_prices, stock_number)
