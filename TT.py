@@ -1,12 +1,14 @@
 import requests
 import pandas as pd
 
-# Central banks' data IDs mapped to their Chinese names
+# Central banks' data IDs mapped to their Chinese names, now including GBP and AUD
 central_banks = {
     "FED": "美国联邦储备系统",  # Federal Reserve System
     "ECB": "欧洲中央银行",    # European Central Bank
     "BOJ": "日本银行",       # Bank of Japan
-    "PBOC": "中国人民银行"   # People's Bank of China
+    "PBOC": "中国人民银行",  # People's Bank of China
+    "BOE": "英格兰银行",    # Bank of England
+    "RBA": "澳大利亚储备银行" # Reserve Bank of Australia
 }
 
 base_url = "https://api.finmindtrade.com/api/v4/data"
@@ -16,7 +18,7 @@ def fetch_and_display_interest_rate_data(bank_id, bank_name):
     parameters = {
         "dataset": "InterestRate",
         "data_id": bank_id,
-        "start_date": "1982-01-01",
+        "start_date": "2022-01-01",
     }
     response = requests.get(base_url, params=parameters)
     data = response.json()
