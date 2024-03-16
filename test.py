@@ -12,13 +12,21 @@ def convert_to_ad(date_str):
 def fetch_stock_data(date, stock_no):
     url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date}&stockNo={stock_no}"
     response = requests.get(url)
+    print(response.text[:500])
     if response.status_code == 200:
-        content = "\n".join([line for line in response.text.split('\n') if line.strip().replace('"', '').isdigit() or '日期' in line])
+        # 分割响应文本为行，并过滤掉不需要的行
+        lines = response.text.split('\n')
+        # 确保数据行至少包含某些关键词，这里使用'成交股數'作为一个示例关键词
+        valid_lines = [line for line in lines if '成交股數' in line or line.replace('"', '').replace(',', '').isdigit()]
+        content = "\n".join(valid_lines)
         if content:
-            # 读取CSV数据，跳过不必要的行
-            df = pd.read_csv(StringIO(content), header=1)
-            return df
+            try:
+                df = pd.read_csv(StringIO(content), header=0)  # header=0 表示第一行是列名
+                return df
+            except pd.errors.EmptyDataError:
+                print(f"No data to parse for {date_str} for stock {stock_no}.")
     return None
+
 
 def main(stock_no, start_date, end_date):
     all_data = []
