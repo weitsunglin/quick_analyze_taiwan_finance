@@ -1,27 +1,35 @@
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 
-# 定义URL
 url = 'https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL'
 
-# 发送GET请求
 response = requests.get(url)
 
-# 检查请求是否成功
 if response.status_code == 200:
-    # 将JSON响应转换为Python列表
     data = response.json()
-    
-    # 转换数据为DataFrame
     df = pd.DataFrame(data)
-    
-    # 确保'TradeValue'列是数值类型，以便排序
     df['TradeValue'] = pd.to_numeric(df['TradeValue'], errors='coerce')
+    top10 = df.sort_values(by='TradeValue', ascending=False).head(10)
+
+    # 设置支持繁体中文的字体
+    font_path = "C:\\Windows\\Fonts\\msjh.ttc"  # 字体路径
+    font_properties = FontProperties(fname=font_path, size=12)
+    plt.rcParams['axes.unicode_minus'] = False  # 正确显示负号
+
+    plt.style.use('ggplot')
+    ax = top10.plot(kind='bar', x='Name', y='TradeValue', legend=None)
+    ax.set_title('Top 10 Stocks by Trade Value', fontproperties=font_properties)
+    ax.set_xlabel('Stock Name', fontproperties=font_properties)
+    ax.set_ylabel('Trade Value', fontproperties=font_properties)
+    ax.set_xticklabels(top10['Name'], fontproperties=font_properties, rotation=45, ha="right")
     
-    # 根据'TradeValue'排序，并取前10名
-    top10 = df.sort_values(by='TradeValue', ascending=False).head(20)
-    
-    # 打印结果
-    print(top10)
+    plt.tight_layout()
+
+    # 保存图表到本地路径
+    save_path = 'C:\\Users\\User\\Desktop\\project\\quick_analyze_stock\\top10_stocks_trade_value.png'
+    plt.savefig(save_path)
+    plt.show()
 else:
     print("Failed to retrieve data, status code:", response.status_code)
