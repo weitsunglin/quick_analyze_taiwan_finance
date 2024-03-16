@@ -1,60 +1,49 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
-from io import StringIO
 from datetime import datetime, timedelta
+from io import StringIO
 
-# 定义开始和结束日期
-start_date = datetime(2024, 3, 1)
-end_date = datetime(2024, 3, 31)
+# 初始化一个空的DataFrame来存储每天的数据
+df_monthly = pd.DataFrame()
 
-# 准备存储每天的收盘价数据
-dates = []
-closing_prices = []
+# 股票代码和开始日期
+stock_no = '2330'
+start_date = datetime(2021, 5, 1)
+end_date = datetime(2021, 5, 31)
 
 # 循环获取一个月内每天的数据
 current_date = start_date
 while current_date <= end_date:
-    # 格式化日期
-    date_str = current_date.strftime("%Y%m%d")
+    date_str = current_date.strftime('%Y%m%d')
+    url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date_str}&stockNo={stock_no}"
     
-    # 构建URL
-    url = f"https://www.twse.com.tw/exchangeReport/MI_INDEX?response=csv&date={date_str}&type=1216"
-    
-    # 发送GET请求
     response = requests.get(url)
-
-    print(response.text[:500])
-    
-    # 检查请求是否成功
     if response.status_code == 200:
-        # 将响应的CSV文本转换为DataFrame
-        data = pd.read_csv(StringIO(response.text), header=1)
-        
-        # 检查DataFrame是否包含收盘价列
-        if '收盤價' in data.columns:
-            # 提取当天的收盘价并存储
-            closing_price = data['收盤價'][0]
-            dates.append(current_date)
-            closing_prices.append(closing_price)
+        # 读取CSV数据到DataFrame
+        data = pd.read_csv(StringIO(response.text), header=1, skipfooter=5, engine='python')
+        if not data.empty:
+            df_monthly = pd.concat([df_monthly, data], ignore_index=True)
     
-    # 移动到下一天
     current_date += timedelta(days=1)
 
-# 转换为DataFrame
-df = pd.DataFrame({'Date': dates, 'ClosingPrice': closing_prices})
+# 预处理和清洗数据
+df_monthly = df_monthly.dropna()
+df_monthly['日期'] = pd.to_datetime(df_monthly['日期'].str.replace('年', '-', regex=False).str.replace('月', '-', regex=False).str.replace('日', '', regex=False), format='%Y-%m-%d')
+df_monthly['收盤價'] = pd.to_numeric(df_monthly['收盤價'].str.replace(',', '', regex=False), errors='coerce')
 
-# 绘制走势图
+# 绘制收盘价走势图
 plt.figure(figsize=(10, 6))
-plt.plot(df['Date'], df['ClosingPrice'], marker='o', linestyle='-', color='b')
-plt.title('Closing Prices in March 2024')
+plt.plot(df_monthly['日期'], df_monthly['收盤價'], marker='o', linestyle='-')
+plt.title(f'Stock No. {stock_no} Closing Price in May 2021')
 plt.xlabel('Date')
 plt.ylabel('Closing Price')
+plt.grid(True)
 plt.xticks(rotation=45)
-plt.tight_layout()
 
-# 保存图表到本地路径
-save_path = 'C:/Users/User/Desktop/project/quick_analyze_stock/closing_prices_march_2024.png'
+# 保存走势图到本地
+save_path = f'C:\\Users\\User\\Desktop\\project\\quick_analyze_stock\\{stock_no}_closing_price_may_2021.png'
 plt.savefig(save_path)
+plt.close()
 
-plt.show()
+print(f"Chart has been saved to {save_path}")
