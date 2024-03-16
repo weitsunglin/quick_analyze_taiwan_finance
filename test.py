@@ -13,13 +13,10 @@ def fetch_stock_data(date, stock_no):
                 parts = line.split('","')
                 if len(parts) >= 7:
                     date_str = parts[0].replace('"', '')
-                    # Attempt to split the date string and convert to integers
                     try:
                         year, month, day = map(int, date_str.split('/'))
                     except ValueError:
-                        # Skip the header or any row that cannot be converted to integers
                         continue
-                    # Convert ROC year to Gregorian year
                     gregorian_year = year + 1911
                     date = datetime(gregorian_year, month, day)
                     closing_price = float(parts[6])
@@ -39,6 +36,6 @@ def plot_stock_data(dates, prices, stock_no):
 
 if __name__ == "__main__":
     stock_number = "2330"
-    date = "20240301"
+    date = "20240201"
     dates, prices = fetch_stock_data(date, stock_number)
     plot_stock_data(dates, prices, stock_number)
