@@ -42,6 +42,7 @@ plt.figure(figsize=(10, 6))
 min_price = min(prices) * 0.9
 max_price = max(prices) * 1.1
 
+
 bars = plt.bar(stock_codes, prices, color='blue')
 plt.xlabel('股票代號', fontproperties=font)
 plt.ylabel('價格 (nt)', fontproperties=font)

@@ -37,7 +37,7 @@ def plot_stock_data(dates, prices, stock_no):
     plt.ylabel('Closing Price (TWD)')
     plt.xticks(rotation=45)
     plt.tight_layout()
-    plt.show()
+     plt.savefig(f"C:/Users/User/Desktop/project/quick_analyze_stock/{stock_no}_two_month_closing_prices.png")
 
 if __name__ == "__main__":
     stock_number = "2330"
