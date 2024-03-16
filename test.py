@@ -18,6 +18,15 @@ def fetch_stock_data(date, stock_no):
             return df
     return None
 
+def convert_to_ad(date_str):
+    """
+    Convert a ROC date string to a Gregorian (AD) date string.
+    Example: "110/05/03" -> "2021/05/03"
+    """
+    year, month, day = date_str.split('/')
+    year = str(int(year) + 1911)  # Convert ROC year to AD year
+    return '/'.join([year, month, day])
+
 def main(stock_no, start_date, end_date):
     """
     Main function to fetch data, process it, and plot the closing prices.
@@ -32,6 +41,9 @@ def main(stock_no, start_date, end_date):
         if data is not None:
             all_data.append(data)
         current_date += timedelta(days=1)
+
+    df_all['日期'] = pd.to_datetime(df_all['日期'].apply(convert_to_ad), format='%Y/%m/%d')
+
 
     if all_data:
         df_all = pd.concat(all_data, ignore_index=True)
