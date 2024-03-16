@@ -40,7 +40,7 @@ def plot_stock_data(dates, prices, stock_no):
     plt.savefig(f"C:/Users/User/Desktop/project/quick_analyze_stock/{stock_no}_two_month_closing_prices.png")
 
 if __name__ == "__main__":
-    stock_number = "2330"
+    stock_number = "1216"
     current_date = datetime.now()
     current_month_str = current_date.strftime("%Y%m01")
     previous_month_str = get_previous_month(current_date)
