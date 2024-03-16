@@ -5,9 +5,17 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 
 def convert_to_ad(date_str):
-    year, month, day = date_str.split('/')
-    year = str(int(year) + 1911)  # Convert ROC year to AD year
-    return f'{year}-{month}-{day}'
+    try:
+        # 尝试按预期格式拆分日期字符串
+        year, month, day = date_str.split('/')
+        # 将民国纪年转换为公元纪年
+        year = str(int(year) + 1911)
+        return f'{year}-{month}-{day}'
+    except ValueError:
+        # 如果日期字符串格式不正确，打印一个错误消息并返回原始字符串
+        print(f"Invalid date format: {date_str}")
+        return date_str
+
 
 def fetch_stock_data(date, stock_no):
     url = f"http://www.twse.com.tw/exchangeReport/STOCK_DAY?response=csv&date={date}&stockNo={stock_no}"
