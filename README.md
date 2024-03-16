@@ -20,6 +20,4 @@
 
 
 
-https://github.com/weitsunglin/quick_analyze_stock/blob/main/top15_stocks_trade_value.png
-
 ![cute](https://github.com/weitsunglin/quick_analyze_stock/blob/main/cute.jpg)
