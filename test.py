@@ -1,8 +1,8 @@
 import requests
 import pandas as pd
+import matplotlib.pyplot as plt
 from io import StringIO
 from datetime import datetime, timedelta
-import matplotlib.pyplot as plt
 
 
 def convert_to_ad(date_str):
@@ -49,29 +49,34 @@ def main(stock_no, start_date, end_date):
         df_all = pd.concat(all_data, ignore_index=True)
         df_all['日期'] = df_all['日期'].apply(convert_to_ad)
         df_all['日期'] = pd.to_datetime(df_all['日期'], errors='coerce')
-        
-        # Check if '收盤價' is already numeric; this step may be redundant if conversion is straightforward
         if df_all['收盤價'].dtype == object:
             df_all['收盤價'] = df_all['收盤價'].str.replace(',', '')
         df_all['收盤價'] = pd.to_numeric(df_all['收盤價'], errors='coerce')
-        
+
         plt.figure(figsize=(14, 7))
-        plt.plot(df_all['日期'], df_all['收盤價'], marker='o', linestyle='-', color='b')
+        # 使用scatter绘制所有点，不会自动连接点
+        plt.scatter(df_all['日期'], df_all['收盤價'], color='b')
+        # 手动绘制连线，但跳过第一个和最后一个点
+        if len(df_all) > 2:  # 确保数据中有超过两个点
+            for i in range(1, len(df_all) - 2):
+                plt.plot(df_all['日期'][i:i+2], df_all['收盤價'][i:i+2], 'b-')
+
         plt.title(f'Stock No. {stock_no} Closing Price Trend')
         plt.xlabel('Date')
         plt.ylabel('Closing Price (TWD)')
         plt.xticks(rotation=45)
         plt.grid(True)
         
-        save_path = f"{stock_no}_closing_prices.png"
+        save_path = f"{stock_no}.png"
         plt.savefig(save_path)
         plt.show()
         print(f"Plot saved to {save_path}")
     else:
         print("No data fetched.")
 
+
 if __name__ == "__main__":
     stock_number = "2330"
-    start = datetime(2024, 3, 1)
-    end = datetime(2023, 3, 16)
+    start = datetime(2024, 2, 1)
+    end = datetime(2024,3, 1)
     main(stock_number, start, end)
