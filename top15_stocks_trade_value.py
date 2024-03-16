@@ -20,7 +20,7 @@ if response.status_code == 200:
 
     plt.style.use('ggplot')
     ax = top10.plot(kind='bar', x='Name', y='TradeValue', legend=None)
-    ax.set_title('Top 10 Stocks by Trade Value', fontproperties=font_properties)
+    ax.set_title('Top 15 Stocks by Trade Value', fontproperties=font_properties)
     ax.set_xlabel('Stock Name', fontproperties=font_properties)
     ax.set_ylabel('Trade Value', fontproperties=font_properties)
     ax.set_xticklabels(top10['Name'], fontproperties=font_properties, rotation=45, ha="right")
