@@ -38,11 +38,9 @@ for data_id, bank_name in data_ids.items():
     else:
         print(f"No data available for {bank_name}")
 
-# Combine all fetched data into a single DataFrame
+
 combined_data = pd.concat(all_data, ignore_index=True)
 
-# Display the combined data
+
 print(combined_data.head())
 
-# Optionally, you can save this data to a CSV file or perform further analysis
-# combined_data.to_csv("central_banks_interest_rates.csv", index=False)
