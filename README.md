@@ -1,9 +1,4 @@
-## 台灣小海豹嚴選 (五分鐘刷新一次)
-
-![stock_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/stock_prices.png)
-
-
-## 個股走勢
+## 台灣小海豹嚴選 個股走勢
 
 ![00919_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/00919_closing_prices.png)
 
