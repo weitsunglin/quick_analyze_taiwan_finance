@@ -2,6 +2,8 @@ import requests
 import pandas as pd
 from io import StringIO
 from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+
 
 def convert_to_ad(date_str):
     try:
@@ -45,15 +47,14 @@ def main(stock_no, start_date, end_date):
 
     if all_data:
         df_all = pd.concat(all_data, ignore_index=True)
-        # 处理日期格式
         df_all['日期'] = df_all['日期'].apply(convert_to_ad)
         df_all['日期'] = pd.to_datetime(df_all['日期'], errors='coerce')
-
-        # 检查'收盤價'是否为字符串，如果是，则替换逗号
+        
+        # Check if '收盤價' is already numeric; this step may be redundant if conversion is straightforward
         if df_all['收盤價'].dtype == object:
             df_all['收盤價'] = df_all['收盤價'].str.replace(',', '')
         df_all['收盤價'] = pd.to_numeric(df_all['收盤價'], errors='coerce')
-
+        
         plt.figure(figsize=(14, 7))
         plt.plot(df_all['日期'], df_all['收盤價'], marker='o', linestyle='-', color='b')
         plt.title(f'Stock No. {stock_no} Closing Price Trend')
@@ -61,7 +62,7 @@ def main(stock_no, start_date, end_date):
         plt.ylabel('Closing Price (TWD)')
         plt.xticks(rotation=45)
         plt.grid(True)
-
+        
         save_path = f"{stock_no}_closing_prices.png"
         plt.savefig(save_path)
         plt.show()
@@ -71,6 +72,6 @@ def main(stock_no, start_date, end_date):
 
 if __name__ == "__main__":
     stock_number = "2330"
-    start = datetime(2021, 5, 1)
-    end = datetime(2021, 5, 31)
+    start = datetime(2024, 3, 1)
+    end = datetime(2023, 3, 16)
     main(stock_number, start, end)
