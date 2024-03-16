@@ -23,6 +23,8 @@ while current_date <= end_date:
     
     # 发送GET请求
     response = requests.get(url)
+
+    print(response.text[:500])
     
     # 检查请求是否成功
     if response.status_code == 200:
