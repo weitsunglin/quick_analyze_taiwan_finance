@@ -6,6 +6,10 @@
 
 ![00929_closing_prices](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/00929_3month_history.png)
 
+![0050_closing_prices](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/0050_3month_history.png)
+
+![0056_closing_prices](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/0056_3month_history.png)
+
 ### 食品
 
 ![1216_closing_prices](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/1216_3month_history.png)
