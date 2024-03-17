@@ -20,9 +20,9 @@ if response.status_code == 200:
 
     plt.style.use('ggplot')
     ax = top10.plot(kind='bar', x='Name', y='TradeValue', legend=None)
-    ax.set_title('Top 15 Stocks by Trade Value', fontproperties=font_properties)
-    ax.set_xlabel('Stock Name', fontproperties=font_properties)
-    ax.set_ylabel('Trade Value', fontproperties=font_properties)
+    ax.set_title('台灣上市公司成交金額前15名', fontproperties=font_properties)
+    ax.set_xlabel('公司名稱', fontproperties=font_properties)
+    ax.set_ylabel('成交金額', fontproperties=font_properties)
     ax.set_xticklabels(top10['Name'], fontproperties=font_properties, rotation=45, ha="right")
     
     plt.tight_layout()
