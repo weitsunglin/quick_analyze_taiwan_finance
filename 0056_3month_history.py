@@ -50,7 +50,7 @@ def plot_stock_data(dates, prices, stock_no):
             plt.plot([dates[i-1], dates[i]], [prices[i-1], prices[i]], 'g-o')
             count_green += 1
 
-    plt.title(f'股票代號{stock_no}永豐收盤價', fontproperties=font_properties)
+    plt.title(f'股票代號{stock_no}收盤價', fontproperties=font_properties)
     plt.xlabel('日期', fontproperties=font_properties)
     plt.ylabel('收盤價', fontproperties=font_properties)
     plt.xticks(rotation=45)
