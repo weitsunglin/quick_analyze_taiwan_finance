@@ -27,6 +27,11 @@
 ![2890_closing_prices](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2890_3month_history.png)
 
 
+### 電信
+
+![2412_3month_history](https://github.com/weitsunglin/quick_analyze_stock/blob/main/2412_3month_history.png)
+
+
 ## 個股成交前15
 
 ![top15_stocks_trade_value](https://github.com/weitsunglin/quick_analyze_stock/blob/main/top15_stocks_trade_value.png)
