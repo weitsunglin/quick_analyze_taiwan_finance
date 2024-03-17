@@ -59,7 +59,7 @@ def plot_stock_data(dates, prices, stock_no):
     plt.text(dates[0], max(prices), f'漲價:{count_red}次。跌:{count_green}次', fontproperties=font_properties, color='black')
     
     plt.tight_layout()
-    plt.savefig(f"{stock_no}_3month_history.png")
+    plt.savefig(f"C:\\Users\\User\\Desktop\\project\\quick_analyze_taiwan_stock\\{stock_no}_3month_history.png")
 
 
 if __name__ == "__main__":
