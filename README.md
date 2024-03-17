@@ -38,3 +38,5 @@
 ## 數位代理豹
 
 ![cute](https://github.com/weitsunglin/quick_analyze_stock/blob/main/cute.jpg)
+
+© 2024 weitusnglin. All rights reserved.
