@@ -41,6 +41,6 @@ if response.status_code == 200:
     plt.tight_layout()
     
     # 顯示圖表
-    plt.savefig('C:/Users/User/Desktop/project/quick_analyze_stock/exchange_rates_chart.png')
+    plt.savefig('C:/Users/User/Desktop/project/quick_analyze_taiwan_stock/exchange_rates_chart.png')
 else:
     print("Failed to retrieve data, status code:", response.status_code)
