@@ -36,6 +36,10 @@
 ![2412_3month_history](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/2412_3month_history.png)
 
 
+### 航運
+![2603_3month_history](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/2603_3month_history.png)
+
+
 ## 個股成交前15
 
 ![top15_stocks_trade_value](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/top15_stocks_trade_value.png)
