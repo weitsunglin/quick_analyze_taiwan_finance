@@ -1,4 +1,4 @@
-## 台灣個股走勢
+## 優質個股
 
 ![00919_closing_prices](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/00919_3month_history.png)
 
@@ -21,10 +21,6 @@
 ![2412_3month_history](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/2412_3month_history.png)
 
 ![2603_3month_history](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/2603_3month_history.png)
-
-## 個股成交前15
-
-![top15_stocks_trade_value](https://github.com/weitsunglin/quick_analyze_taiwan_stock/blob/main/top15_stocks_trade_value.png)
 
 ## 貨幣走勢
 
