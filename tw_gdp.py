@@ -17,7 +17,7 @@ driver.execute_script("window.scrollTo(0, 500)")
 driver.implicitly_wait(10)
 
 
-driver.save_screenshot("tw_gdp.png")
+driver.save_screenshot(f'C:\\Users\\User\\Desktop\\project\\quick_analyze_taiwan_finance\\tw_gdp.png')
 
 
 driver.quit()

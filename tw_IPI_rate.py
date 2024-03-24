@@ -18,7 +18,7 @@ driver.execute_script("window.scrollTo(0, 500)")
 driver.implicitly_wait(10)
 
 
-driver.save_screenshot("tw_IPI_rate.png")
+driver.save_screenshot(f'C:\\Users\\User\\Desktop\\project\\quick_analyze_taiwan_finance\\tw_IPI_rate.png')
 
 
 driver.quit()
