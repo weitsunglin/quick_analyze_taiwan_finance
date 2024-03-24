@@ -39,8 +39,4 @@ if response.status_code == 200:
     plt.grid(True)
     plt.xticks(rotation=45)
     plt.tight_layout()
-    
-    # 顯示圖表
     plt.savefig(f'C:\\Users\\User\\Desktop\\project\\quick_analyze_taiwan_finance\\exchange_rates_chart.png')
-else:
-    print("Failed to retrieve data, status code:", response.status_code)
